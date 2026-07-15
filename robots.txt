@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://abdshehab.github.io/syria-building-cala1/sitemap.xml
+Sitemap: https://syri8.github.io/syria-building-cala1/sitemap.xml
 
 # تحسين الفهرسة لمحركات البحث
 # السماح بفهرسة جميع الصفحات المهمة
