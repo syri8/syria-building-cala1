@@ -1,0 +1,108 @@
+{
+  "name": "حاسبة مواد البناء — سوريا",
+  "short_name": "حاسبة البناء",
+  "description": "حاسبة مواد البناء للسوق السوري 2026. احسب كميات الإسمنت، الحديد، الرمل، البحص، والبلوك بدقة.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#2b3138",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/assets/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "حاسبة مواد البناء على الكمبيوتر"
+    },
+    {
+      "src": "/assets/screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "حاسبة مواد البناء على الموبايل"
+    }
+  ],
+  "categories": ["business", "utilities", "productivity"],
+  "shortcuts": [
+    {
+      "name": "حاسبة الصبة",
+      "short_name": "صبة",
+      "description": "احسب كمية مواد البناء للصبة",
+      "url": "/?tab=slab",
+      "icons": [{ "src": "/assets/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "المخطط التقسيمي",
+      "short_name": "مخطط",
+      "description": "صمم مخطط منزلك",
+      "url": "/?tab=floorplan",
+      "icons": [{ "src": "/assets/icon-96.png", "sizes": "96x96" }]
+    }
+  ]
+}

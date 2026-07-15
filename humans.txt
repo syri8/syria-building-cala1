@@ -1,0 +1,18 @@
+/* TEAM */
+  Developer: Syria Building Calculator Team
+  Site: https://syria-building-calc.com
+  Contact: contact@syria-building-calc.com
+  From: Syria
+
+/* THANKS */
+  Google Fonts - Tajawal & Cairo fonts
+  Schema.org - Structured data standards
+
+/* SITE */
+  Standards: HTML5, CSS3, ES6+
+  Components: Vanilla JS, SVG, Canvas API
+  Software: VS Code, Git, Figma
+  Last update: 2026-06-20
+  Language: Arabic / English
+  Doctype: HTML5
+  IDE: Cursor / VS Code

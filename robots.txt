@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Sitemap: https://abdshehab.github.io/syria-building-cala1/sitemap.xml
+
+# تحسين الفهرسة لمحركات البحث
+# السماح بفهرسة جميع الصفحات المهمة
+Allow: /index.html
+Allow: /calculator.html
+Allow: /blog.html
+Allow: /contact.html
+
+# منع فهرسة الملفات غير الضرورية
+Disallow: /site-ready.zip
+Disallow: /screenshot-wide.png
+Disallow: /icon-512.png
+Disallow: /manifest.json
+Disallow: /vercel.json
+Disallow: /netlify.toml
+Disallow: /README.md
