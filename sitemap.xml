@@ -1,28 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+  <!-- الصفحة الرئيسية -->
   <url>
-    <loc>https://abdshehab.github.io/syria-building-cala1/</loc>
-    <priority>1.0</priority>
+    <loc>https://syri8.github.io/syria-building-cala1/</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://syri8.github.io/syria-building-cala1/assets/og-image.jpg</image:loc>
+      <image:title>حاسبة مواد البناء سوريا 2026</image:title>
+      <image:caption>حاسبة مجانية لحساب الإسمنت والحديد والرمل والبلوك</image:caption>
+    </image:image>
   </url>
 
+  <!-- حاسبة مواد البناء -->
   <url>
-    <loc>https://abdshehab.github.io/syria-building-cala1/calculator.html</loc>
-    <priority>0.9</priority>
+    <loc>https://syri8.github.io/syria-building-cala1/#calc-heading</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
 
+  <!-- حاسبة الصبة المسلحة -->
   <url>
-    <loc>https://abdshehab.github.io/syria-building-cala1/blog.html</loc>
-    <priority>0.8</priority>
+    <loc>https://syri8.github.io/syria-building-cala1/#type</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
 
+  <!-- حاسبة البلوك -->
   <url>
-    <loc>https://abdshehab.github.io/syria-building-cala1/contact.html</loc>
-    <priority>0.7</priority>
+    <loc>https://syri8.github.io/syria-building-cala1/#blockwall</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- مخطط تقسيمي تفاعلي -->
+  <url>
+    <loc>https://syri8.github.io/syria-building-cala1/#plan-heading</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- الأسئلة الشائعة -->
+  <url>
+    <loc>https://syri8.github.io/syria-building-cala1/#faq-heading</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- دليل مواد البناء -->
+  <url>
+    <loc>https://syri8.github.io/syria-building-cala1/#seo-content</loc>
+    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 
 </urlset>
