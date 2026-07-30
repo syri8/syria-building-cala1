@@ -5,7 +5,8 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- الصفحة الرئيسية -->
+  <!-- صفحة واحدة فقط: الموقع single-page، وكل روابط الـ # (calc-heading, plan-heading, faq-heading...)
+       محركات البحث بتتجاهلها لأنها مجرد fragments داخل نفس الصفحة، مش صفحات منفصلة. -->
   <url>
     <loc>https://syri8.github.io/syria-building-cala1/</loc>
     <lastmod>2026-07-25T00:00:00+03:00</lastmod>
@@ -16,54 +17,6 @@
       <image:title>حاسبة مواد البناء سوريا 2026</image:title>
       <image:caption>حاسبة مجانية لحساب الإسمنت والحديد والرمل والبلوك</image:caption>
     </image:image>
-  </url>
-
-  <!-- حاسبة مواد البناء -->
-  <url>
-    <loc>https://syri8.github.io/syria-building-cala1/#calc-heading</loc>
-    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- حاسبة الصبة المسلحة -->
-  <url>
-    <loc>https://syri8.github.io/syria-building-cala1/#type</loc>
-    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- حاسبة البلوك -->
-  <url>
-    <loc>https://syri8.github.io/syria-building-cala1/#blockwall</loc>
-    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- مخطط تقسيمي تفاعلي -->
-  <url>
-    <loc>https://syri8.github.io/syria-building-cala1/#plan-heading</loc>
-    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- الأسئلة الشائعة -->
-  <url>
-    <loc>https://syri8.github.io/syria-building-cala1/#faq-heading</loc>
-    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- دليل مواد البناء -->
-  <url>
-    <loc>https://syri8.github.io/syria-building-cala1/#seo-content</loc>
-    <lastmod>2026-07-25T00:00:00+03:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
   </url>
 
 </urlset>
