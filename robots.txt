@@ -2,18 +2,8 @@ User-agent: *
 Allow: /
 Sitemap: https://syri8.github.io/syria-building-cala1/sitemap.xml
 
-# تحسين الفهرسة لمحركات البحث
-# السماح بفهرسة جميع الصفحات المهمة
-Allow: /index.html
-Allow: /calculator.html
-Allow: /blog.html
-Allow: /contact.html
-
-# منع فهرسة الملفات غير الضرورية
+# ملفات إعداد ومشاريع لا داعي لفهرستها
 Disallow: /site-ready.zip
-Disallow: /screenshot-wide.png
-Disallow: /icon-512.png
-Disallow: /manifest.json
+Disallow: /README.md
 Disallow: /vercel.json
 Disallow: /netlify.toml
-Disallow: /README.md
