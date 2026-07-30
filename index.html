@@ -757,30 +757,51 @@
   input, select, textarea { font-size: 16px !important; }
 }
 
-/* ======== DARK MODE SUPPORT ======== */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #1a1a1a;
-    color: #e0e0e0;
-  }
-  .card { background: #2a2a2a; border-color: #444; }
-  .form-side { background: #2a2a2a; }
-  .result-side { background: #252525; }
-  .field select, .field input { background: #333; color: #e0e0e0; border-color: #555; }
-  .room-template { background: #333 !important; }
-  .city-btn { background: #333; }
-  .placeholder { color: #888; }
-  .hint { color: #aaa; }
-  .ai-box { background: #2a2a2a; color: #ddd; }
-  .saved-calcs { background: #2a2a2a; }
-  .compare-card { background: #2a2a2a; }
-  .price-editor { background: #2a2a2a; }
-  table.mat th { border-bottom-color: #555; }
-  table.mat td { border-bottom-color: #444; }
-  .total-row td { border-top-color: #555; }
-  .progress-bar { background: #444; }
-  footer { color: #888; }
+/* ======== DARK MODE SUPPORT (يدوي عبر زر + افتراضي حسب نظام التشغيل) ======== */
+body.dark-mode {
+  background: #1a1a1a;
+  color: #e0e0e0;
 }
+body.dark-mode .card { background: #2a2a2a; border-color: #444; }
+body.dark-mode .card-head { background: repeating-linear-gradient(135deg, #333 0 12px, #2a2a2a 12px 24px); border-bottom-color:#444; }
+body.dark-mode .form-side { background: #2a2a2a; border-color:#444; }
+body.dark-mode .result-side { background: #252525; }
+body.dark-mode .field select, body.dark-mode .field input { background: #333; color: #e0e0e0; border-color: #555; }
+body.dark-mode .room-template { background: #333 !important; }
+body.dark-mode .city-btn { background: #333; color:#ddd; border-color:#555; }
+body.dark-mode .city-btn.active { background: var(--steel-deep); color: var(--safety); border-color:var(--steel-deep); }
+body.dark-mode .slab-type { background:#2a2a2a; border-color:#555; }
+body.dark-mode .slab-type.active { background: rgba(200,96,42,0.18); border-color: var(--rebar); }
+body.dark-mode .placeholder { color: #888; border-color:#555; }
+body.dark-mode .hint { color: #aaa; }
+body.dark-mode .ai-box { background: #2a2a2a; color: #ddd; border-color:#444; }
+body.dark-mode .saved-calcs { background: #2a2a2a; border-color:#444; }
+body.dark-mode .saved-item { border-bottom-color:#444; }
+body.dark-mode .compare-card { background: #2a2a2a; border-color:#444; }
+body.dark-mode .price-editor { background: #2a2a2a; border-color:#444; }
+body.dark-mode table.mat th { border-bottom-color: #555; }
+body.dark-mode table.mat td { border-bottom-color: #444; }
+body.dark-mode .total-row td { border-top-color: #555; }
+body.dark-mode .progress-bar { background: #444; }
+body.dark-mode footer { color: #888; }
+body.dark-mode #seo-content .card p,
+body.dark-mode #seo-content .card article { color:#c5c5c5; }
+body.dark-mode #seo-content h2,
+body.dark-mode #seo-content h3 { color:#f0ede6; }
+body.dark-mode details { background:#2a2a2a !important; border-color:#444 !important; }
+body.dark-mode summary { color:#f0ede6 !important; }
+body.dark-mode details p { color:#bbb !important; }
+body.dark-mode .saved-item:hover { background: rgba(200,96,42,0.1); }
+
+/* زر تبديل الوضع الليلي/النهاري */
+.theme-toggle {
+  width:38px;height:38px;border:2px solid var(--safety);border-radius:50%;
+  background:transparent;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.05rem;flex-shrink:0;transition:background 0.2s, transform 0.2s;
+  margin-inline-start:auto;
+}
+.theme-toggle:hover { background:rgba(212,167,44,0.15); transform:scale(1.05); }
+.theme-toggle:active { transform:scale(0.95); }
 
 /* ======== REDUCED MOTION ======== */
 @media (prefers-reduced-motion: reduce) {
@@ -878,25 +899,108 @@
      (حتى روابط # الداخلية متل حاسبة الإسمنت والحديد بالفوتر، والـ breadcrumb) بيفتح
      تاب متصفح جديد بدل ما ينتقل بنفس الصفحة. رابط تليجرام الوحيد اللي لازم يفتح تاب
      جديد أصلاً معه target="_blank" مكتوب يدوياً بالكود. -->
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon-180.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
 <meta name="geo.region" content="SY">
 <meta name="geo.placename" content="Syria">
 <meta name="ICBM" content="35.0, 38.0">
 </head>
 <body>
+<script>
+  // تطبيق الوضع الليلي فوراً قبل ما يترسم أي شي، لمنع "وميض" الوضع النهاري لثانية
+  (function() {
+    var saved = localStorage.getItem('theme');
+    var wantsDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (wantsDark) document.body.classList.add('dark-mode');
+  })();
+</script>
 <!-- Skip Link for Accessibility -->
 <a href="#main-content" style="position:absolute; top:-40px; left:0; background:var(--rebar); color:#fff; padding:8px 16px; z-index:10000; transition:top 0.3s;" onfocus="this.style.top='0'">تخطي إلى المحتوى الرئيسي</a>
 <main>
 
 <div class="topbar">
-  <div class="brand">
-    <div class="mark"><span>ب</span></div>
-    <b>حاسبة مواد البناء</b>
+  <div class="brand" style="justify-content:space-between;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div class="mark"><span>ب</span></div>
+      <b>حاسبة مواد البناء</b>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button type="button" class="theme-toggle" id="installAppBtn" onclick="handleInstallClick()" aria-label="تثبيت التطبيق" title="تثبيت التطبيق على جهازك" style="display:none;">
+        <span>📲</span>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="تبديل الوضع الليلي والنهاري" title="الوضع الليلي / النهاري">
+        <span id="themeToggleIcon">🌙</span>
+      </button>
+    </div>
   </div>
 </div>
+<script>
+  function syncThemeIcon() {
+    var icon = document.getElementById('themeToggleIcon');
+    if (icon) icon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  }
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    syncThemeIcon();
+    if (typeof gtag === 'function') {
+      gtag('event', 'toggle_theme', { theme: document.body.classList.contains('dark-mode') ? 'dark' : 'light' });
+    }
+  }
+  syncThemeIcon();
+  // إذا المستخدم ما اختار يدوياً، تابع تغييرات وضع نظام التشغيل تلقائياً
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('theme')) {
+      document.body.classList.toggle('dark-mode', e.matches);
+      syncThemeIcon();
+    }
+  });
+
+  // ======== زر تثبيت التطبيق (PWA Install) ========
+  var deferredInstallPrompt = null;
+  var installBtn = document.getElementById('installAppBtn');
+
+  function isRunningStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
+  function isIOS() {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  }
+
+  // كروم/إيدج/أندرويد: المتصفح نفسه بيطلق هاد الحدث لما التطبيق يصير قابل للتثبيت
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    if (!isRunningStandalone() && installBtn) installBtn.style.display = 'flex';
+  });
+
+  window.addEventListener('appinstalled', function() {
+    deferredInstallPrompt = null;
+    if (installBtn) installBtn.style.display = 'none';
+    if (typeof gtag === 'function') gtag('event', 'pwa_installed');
+  });
+
+  async function handleInstallClick() {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      var choice = await deferredInstallPrompt.userChoice;
+      if (typeof gtag === 'function') gtag('event', 'pwa_install_prompt', { outcome: choice.outcome });
+      deferredInstallPrompt = null;
+      if (installBtn) installBtn.style.display = 'none';
+    } else if (isIOS()) {
+      document.getElementById('iosInstallModal').style.display = 'flex';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // آيفون/سفاري ما بيدعموا beforeinstallprompt، فبنعرض الزر يدوياً ويفتح تعليمات
+    if (!isRunningStandalone() && isIOS() && installBtn) {
+      installBtn.style.display = 'flex';
+    }
+  });
+</script>
 
 
 <!-- ======== BREADCRUMB ======== -->
@@ -1512,30 +1616,7 @@
   input, select, textarea { font-size: 16px !important; }
 }
 
-/* ======== DARK MODE SUPPORT ======== */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #1a1a1a;
-    color: #e0e0e0;
-  }
-  .card { background: #2a2a2a; border-color: #444; }
-  .form-side { background: #2a2a2a; }
-  .result-side { background: #252525; }
-  .field select, .field input { background: #333; color: #e0e0e0; border-color: #555; }
-  .room-template { background: #333 !important; }
-  .city-btn { background: #333; }
-  .placeholder { color: #888; }
-  .hint { color: #aaa; }
-  .ai-box { background: #2a2a2a; color: #ddd; }
-  .saved-calcs { background: #2a2a2a; }
-  .compare-card { background: #2a2a2a; }
-  .price-editor { background: #2a2a2a; }
-  table.mat th { border-bottom-color: #555; }
-  table.mat td { border-bottom-color: #444; }
-  .total-row td { border-top-color: #555; }
-  .progress-bar { background: #444; }
-  footer { color: #888; }
-}
+/* الوضع الليلي معرّف مرة وحدة فوق (body.dark-mode) — ما في داعي نكرره هون */
 
 /* ======== REDUCED MOTION ======== */
 @media (prefers-reduced-motion: reduce) {
@@ -3137,6 +3218,29 @@ function showPrivacyPolicy() {
 </script>
 
 
+<!-- ======== iOS INSTALL INSTRUCTIONS MODAL ======== -->
+<div id="iosInstallModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:10002; align-items:center; justify-content:center; overflow-y:auto;">
+  <div style="background:var(--paper); max-width:380px; width:90%; border-radius:8px; padding:26px; box-shadow:0 20px 60px rgba(0,0,0,0.4); text-align:center;">
+    <div style="font-size:2.2rem; margin-bottom:10px;">📲</div>
+    <h3 style="font-family:'Cairo',sans-serif; color:var(--steel-deep); margin:0 0 16px 0; font-size:1.1rem;">تثبيت التطبيق على آيفون</h3>
+    <div style="text-align:right; line-height:2.1; font-size:0.9rem; color:#444;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span style="background:var(--rebar); color:#fff; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; flex-shrink:0;">1</span>
+        <span>اضغط على زر <strong>المشاركة</strong> ⬆️ بشريط سفاري السفلي</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span style="background:var(--rebar); color:#fff; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; flex-shrink:0;">2</span>
+        <span>مرّر لتحت واختر <strong>"إضافة إلى الشاشة الرئيسية"</strong></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="background:var(--rebar); color:#fff; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; flex-shrink:0;">3</span>
+        <span>اضغط <strong>"إضافة"</strong> — وبتصير الحاسبة تطبيق على جهازك</span>
+      </div>
+    </div>
+    <button onclick="document.getElementById('iosInstallModal').style.display='none'" style="margin-top:20px; padding:10px 28px; background:var(--rebar); color:#fff; border:none; border-radius:4px; font-family:'Cairo'; font-weight:700; cursor:pointer;">فهمت ✅</button>
+  </div>
+</div>
+
 <!-- ======== PRIVACY POLICY MODAL ======== -->
 <div id="privacyModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:10002; align-items:center; justify-content:center; overflow-y:auto;">
   <div style="background:var(--paper); max-width:700px; width:90%; max-height:85vh; overflow-y:auto; border-radius:8px; padding:30px; box-shadow:0 20px 60px rgba(0,0,0,0.4); margin:20px auto;">
@@ -3197,11 +3301,20 @@ function showPrivacyPolicy() {
 // Inline Service Worker Blob for single-file deployment
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const CACHE_NAME = 'syria-building-calc-v1';
-    const urlsToCache = ['/', '/index.html'];
+    const CACHE_NAME = 'syria-building-calc-v2';
+    const urlsToCache = ['./', './index.html'];
 
     self.addEventListener('install', function(e) {
+      self.skipWaiting();
       e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(urlsToCache)));
+    });
+
+    self.addEventListener('activate', function(e) {
+      e.waitUntil(
+        caches.keys().then(keys => Promise.all(
+          keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+        )).then(() => self.clients.claim())
+      );
     });
 
     self.addEventListener('fetch', function(e) {
@@ -3215,7 +3328,11 @@ if ('serviceWorker' in navigator) {
   `;
   const blob = new Blob([swCode], { type: 'application/javascript' });
   const swUrl = URL.createObjectURL(blob);
-  navigator.serviceWorker.register(swUrl).then(() => console.log('SW registered')).catch(err => console.log('SW failed:', err));
+  // لازم نحدد scope صراحة بـ './' لأن الموقع مستضاف بمجلد فرعي (syria-building-cala1)
+  // مو عالجذر، وبدون هاد التحديد الـ scope الافتراضي لملف blob بيطلع خاطئ ومايسجل صح.
+  navigator.serviceWorker.register(swUrl, { scope: './' })
+    .then(() => console.log('SW registered'))
+    .catch(err => console.log('SW failed:', err));
 }
 </script>
 
